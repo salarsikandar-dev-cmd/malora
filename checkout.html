@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#faf6f3">
+<title>Checkout | Malora Jewelry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --cream:#faf6f3;--white:#fff;--ink:#35283b;--deep:#302238;
+  --purple:#705477;--lavender:#eee6f2;--rose:#e8c7c4;
+  --gold:#bd9a65;--muted:#948795;--line:#e9e0e6;
+  --green:#66846b;--red:#bd6672;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+
+/* MARQUEE */
+.announcement{background:var(--deep);overflow:hidden;white-space:nowrap;padding:9px 0}
+.announcement-track{display:flex;width:max-content;animation:marquee 32s linear infinite;will-change:transform}
+.announcement-group{display:flex;flex:0 0 auto}
+.announcement-text{flex:0 0 auto;padding:0 35px;color:white;font:23px 'Great Vibes',cursive}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.announcement:hover .announcement-track{animation-play-state:paused}
+
+/* HEADER */
+.header{height:76px;padding:0 6%;display:flex;justify-content:space-between;align-items:center;background:#fffaf7;border-bottom:1px solid var(--line)}
+.brand{font:600 27px 'Playfair Display',serif;letter-spacing:4px}
+.brand span{display:block;text-align:center;font:9px 'DM Sans',sans-serif;letter-spacing:6px;margin-top:3px}
+.steps{display:flex;gap:12px;align-items:center;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.steps .active{color:var(--purple);font-weight:700}
+.header-right{font-size:10px;color:var(--muted)}
+
+/* PAGE */
+.page{max-width:1200px;margin:auto;padding:38px 30px 80px}
+.breadcrumb{font-size:9px;letter-spacing:1px;color:var(--muted);margin-bottom:25px}
+.breadcrumb span{padding:0 9px;color:var(--gold)}
+.eyebrow{color:var(--gold);font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+h1{font:500 clamp(38px,5vw,54px)/1.1 'Playfair Display',serif}
+.subtitle{color:var(--muted);font-size:11px;margin-top:10px;line-height:1.7}
+.page-heading{margin-bottom:34px}
+.layout{display:grid;grid-template-columns:1.25fr .8fr;gap:30px;align-items:start}
+.section-card{background:white;border:1px solid var(--line);border-radius:9px;padding:25px;margin-bottom:18px}
+.section-heading{display:flex;align-items:center;gap:12px;margin-bottom:23px}
+.number{width:31px;height:31px;border-radius:50%;background:var(--lavender);color:var(--purple);display:grid;place-items:center;font:14px 'Playfair Display',serif}
+.section-heading h2{font:500 21px 'Playfair Display',serif}
+.section-heading small{margin-left:auto;color:var(--muted);font-size:9px}
+
+/* FORM */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 13px}
+.field{min-width:0}
+.field.full{grid-column:1/-1}
+.field label{display:block;font-size:10px;font-weight:600;margin-bottom:8px;color:#625567}
+.required{color:var(--red)}
+.field input,.field select,.field textarea{
+  width:100%;height:46px;padding:0 13px;border:1px solid #e7dfe6;
+  border-radius:5px;background:#fffdfc;color:var(--ink);outline:none;font-size:11px;transition:.2s
+}
+.field textarea{height:85px;padding:12px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--purple);box-shadow:0 0 0 3px #70547712}
+.field input::placeholder,.field textarea::placeholder{color:#b4aab5}
+.field .error{display:none;color:var(--red);font-size:9px;margin-top:5px}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--red)}
+.field.invalid .error{display:block}
+
+/* PAYMENT METHOD */
+.method-list{display:grid;gap:11px}
+.method{
+  border:1px solid var(--line);border-radius:7px;padding:17px;
+  display:flex;align-items:center;gap:13px;transition:.2s;cursor:pointer
+}
+.method.selected{border-color:var(--purple);background:#f8f3f8}
+.method input{accent-color:var(--purple);width:16px;height:16px}
+.method-icon{width:39px;height:39px;display:grid;place-items:center;border-radius:50%;background:var(--lavender);font-size:16px;flex-shrink:0}
+.method-info{flex:1}
+.method-title{font-size:11px;font-weight:700}
+.method-description{font-size:9px;color:var(--muted);margin-top:4px;line-height:1.5}
+.method-discount{font-size:10px;color:var(--green);font-weight:700;text-align:right}
+
+/* ONLINE PAYMENT */
+.online-payment{display:none;margin-top:18px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.online-payment.show{display:block}
+.online-banner{background:var(--deep);color:white;padding:17px 19px}
+.online-banner strong{font:20px 'Playfair Display',serif;display:block}
+.online-banner span{font-size:9px;color:#e6dce9;display:block;margin-top:5px}
+.payment-body{padding:20px}
+.account-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:17px}
+.account-tab{border:1px solid var(--line);background:white;padding:11px 7px;border-radius:5px;font-size:10px;color:var(--muted)}
+.account-tab.active{border-color:var(--purple);background:var(--lavender);color:var(--deep);font-weight:700}
+.account-details{background:#faf7fa;border:1px solid var(--line);padding:16px;border-radius:6px}
+.account-name{font:19px 'Playfair Display',serif;margin-bottom:12px}
+.account-row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:10px}
+.account-row:last-child{border:0}
+.account-row span:first-child{color:var(--muted)}
+.account-row strong{text-align:right;overflow-wrap:anywhere}
+.copy-btn{background:transparent;border:0;color:var(--purple);font-size:9px;font-weight:700;margin-left:5px}
+.amount-payable{background:#f0e9f1;padding:13px;border-radius:5px;margin-top:13px;display:flex;justify-content:space-between;align-items:center}
+.amount-payable span{font-size:10px}
+.amount-payable strong{font:22px 'Playfair Display',serif;color:var(--purple)}
+.upload-area{margin-top:20px}
+.upload-area>label{font-size:10px;font-weight:700;display:block;margin-bottom:9px}
+.upload-box{border:1px dashed #bba8bf;border-radius:7px;background:#fcf9fc;padding:22px 15px;text-align:center;cursor:pointer;transition:.2s}
+.upload-box:hover{border-color:var(--purple);background:#f8f3f8}
+.upload-box input{display:none}
+.upload-icon{font-size:25px;color:var(--purple);margin-bottom:8px}
+.upload-box strong{font-size:11px;display:block}
+.upload-box small{font-size:9px;color:var(--muted);display:block;margin-top:6px}
+.upload-preview{display:none;margin-top:12px;background:#f5f0f5;border-radius:6px;padding:10px;align-items:center;gap:12px}
+.upload-preview.show{display:flex}
+.upload-preview img{width:65px;height:65px;object-fit:cover;border-radius:4px}
+.upload-meta{flex:1;min-width:0}
+.upload-meta strong{font-size:10px;display:block;overflow-wrap:anywhere}
+.upload-meta small{font-size:9px;color:var(--green)}
+.remove-file{border:0;background:transparent;color:var(--red);font-size:10px}
+.payment-warning{font-size:9px;line-height:1.7;color:#816e53;background:#fbf5e9;padding:12px;border-radius:5px;margin-top:14px}
+
+/* SUMMARY */
+.summary{background:white;border:1px solid var(--line);border-radius:9px;padding:25px;position:sticky;top:20px}
+.summary h2{font:500 24px 'Playfair Display',serif;margin-bottom:22px}
+.products{display:grid;gap:16px;max-height:350px;overflow:auto}
+.product{display:grid;grid-template-columns:66px 1fr auto;gap:11px;align-items:center}
+.product-image{width:66px;height:73px;background:var(--lavender);border-radius:5px;overflow:hidden;position:relative}
+.product-image img{width:100%;height:100%;object-fit:cover}
+.qty{position:absolute;top:-5px;right:-5px;background:var(--purple);color:white;border-radius:50%;width:20px;height:20px;display:grid;place-items:center;font-size:9px;border:2px solid white}
+.product-name{font:500 14px 'Playfair Display',serif;line-height:1.4}
+.product-detail{font-size:9px;color:var(--muted);margin-top:5px}
+.product-price{font-size:10px;font-weight:700;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:20px 0}
+.total-row{display:flex;justify-content:space-between;gap:10px;margin:14px 0;font-size:10px}
+.total-row span:last-child{font-weight:600}
+.total-row.discount span:last-child{color:var(--green)}
+.total-row.online-discount{display:none}
+.total-row.online-discount.show{display:flex}
+.grand-total{display:flex;justify-content:space-between;align-items:center}
+.grand-total span:first-child{font:500 17px 'Playfair Display',serif}
+.grand-total strong{font:600 25px 'Playfair Display',serif;color:var(--purple)}
+.savings-note{font-size:9px;color:var(--green);margin-top:10px;line-height:1.6}
+.place-order{width:100%;height:53px;border:1px solid var(--deep);background:var(--deep);color:white;border-radius:30px;margin-top:22px;font-size:10px;letter-spacing:1.5px;font-weight:700;transition:.25s}
+.place-order:hover{background:var(--purple);border-color:var(--purple);transform:translateY(-2px)}
+.place-order:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.summary-note{text-align:center;font-size:9px;color:var(--muted);line-height:1.7;margin-top:12px}
+.secure{background:#f4eef3;padding:13px;border-radius:5px;font-size:9px;color:#746779;line-height:1.7;margin-top:17px}
+
+/* SUCCESS */
+.success{display:none;background:white;border:1px solid var(--line);border-radius:10px;text-align:center;padding:55px 25px;max-width:650px;margin:20px auto}
+.success.show{display:block}
+.success-mark{width:65px;height:65px;border-radius:50%;background:#edf4ed;color:var(--green);display:grid;place-items:center;font-size:29px;margin:0 auto 20px}
+.success h2{font:500 34px 'Playfair Display',serif}
+.success p{font-size:11px;color:var(--muted);line-height:1.8;margin:12px auto 20px;max-width:420px}
+.order-ref{background:#f5eff5;padding:13px;border-radius:5px;font-size:12px;letter-spacing:1px;margin:15px auto;max-width:280px}
+.whatsapp-button{display:inline-block;background:var(--deep);color:white;padding:15px 25px;border-radius:30px;font-size:10px;letter-spacing:1px;margin-top:12px}
+.empty{display:none;text-align:center;background:white;padding:65px 20px;border:1px solid var(--line);border-radius:9px}
+.empty h2{font:30px 'Playfair Display',serif}
+.empty p{font-size:11px;color:var(--muted);margin:12px 0 22px}
+.empty a{background:var(--deep);color:white;padding:14px 25px;border-radius:30px;font-size:10px}
+.footer{background:#f1eaf0;border-top:1px solid var(--line);padding:32px 6%}
+.footer-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer-brand{font:24px 'Playfair Display',serif;letter-spacing:3px}
+.footer p,.copyright{font-size:9px;color:var(--muted);margin-top:7px}
+.footer-links{display:flex;gap:20px;font-size:10px}
+.copyright{max-width:1200px;margin:20px auto 0;padding-top:15px;border-top:1px solid #ded2dc}
+.toast{position:fixed;right:20px;bottom:20px;background:var(--deep);color:white;padding:14px 19px;border-radius:6px;font-size:11px;opacity:0;transform:translateY(10px);transition:.3s;z-index:50;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.summary{position:static}}
+
+/* MOBILE RESPONSIVE REFINEMENT */
+@media(max-width:600px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  .announcement{padding:8px 0}
+  .announcement-track{animation-duration:32s}
+  .announcement-text{font-size:19px;padding:0 22px}
+
+  .header{
+    height:auto;
+    min-height:76px;
+    padding:12px 15px;
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr);
+    column-gap:12px;
+    row-gap:7px;
+  }
+  .brand{
+    grid-column:1;
+    grid-row:1 / 3;
+    align-self:center;
+    font-size:21px;
+    letter-spacing:2px;
+    white-space:nowrap;
+  }
+  .brand span{font-size:8px;letter-spacing:4px}
+  .steps{
+    grid-column:2;
+    grid-row:1;
+    justify-content:flex-end;
+    gap:5px;
+    flex-wrap:wrap;
+    font-size:7px;
+    letter-spacing:.5px;
+    line-height:1.5;
+  }
+  .header-right{
+    grid-column:2;
+    grid-row:2;
+    text-align:right;
+    font-size:8px;
+    letter-spacing:.7px;
+  }
+
+  .page{padding:24px 13px 45px}
+  .breadcrumb{font-size:8px;letter-spacing:.7px;margin-bottom:20px}
+  .breadcrumb span{padding:0 5px}
+  .page-heading{margin-bottom:25px}
+  h1{font-size:clamp(34px,9vw,43px);line-height:1.12}
+  .eyebrow{font-size:8px;letter-spacing:2.5px}
+  .subtitle{font-size:11px;max-width:310px;line-height:1.7}
+
+  .layout{grid-template-columns:minmax(0,1fr);gap:15px}
+  .section-card,.summary{padding:19px 14px;border-radius:8px}
+  .section-card{margin-bottom:13px}
+  .section-heading{gap:9px;margin-bottom:19px;flex-wrap:wrap}
+  .number{width:29px;height:29px;flex-shrink:0}
+  .section-heading h2{font-size:18px}
+  .section-heading small{font-size:7px;letter-spacing:.4px}
+
+  .grid{grid-template-columns:minmax(0,1fr);gap:14px}
+  .field.full{grid-column:auto}
+  .field input,.field select,.field textarea{
+    width:100%;
+    min-width:0;
+    font-size:12px;
+  }
+  .field label{font-size:10px}
+  .field textarea{min-height:85px}
+
+  .method{padding:13px 10px;gap:9px;flex-wrap:wrap}
+  .method-icon{width:34px;height:34px;font-size:14px}
+  .method-info{min-width:0}
+  .method-title{font-size:10px}
+  .method-description{font-size:8px}
+  .method-discount{font-size:9px;margin-left:auto;white-space:nowrap}
+
+  .online-payment{margin-top:14px}
+  .online-banner{padding:15px}
+  .online-banner strong{font-size:19px;line-height:1.3}
+  .online-banner span{font-size:9px;line-height:1.6}
+  .payment-body{padding:13px}
+  .account-tabs{gap:6px}
+  .account-tab{font-size:9px;padding:11px 5px}
+  .account-details{padding:12px}
+  .account-name{font-size:17px}
+  .account-row{
+    gap:8px;
+    font-size:9px;
+    align-items:flex-start;
+  }
+  .account-row span:first-child{flex:0 0 34%}
+  .account-row strong{
+    min-width:0;
+    max-width:66%;
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+  .copy-btn{font-size:8px}
+  .amount-payable{gap:8px;padding:12px}
+  .amount-payable span{font-size:9px}
+  .amount-payable strong{font-size:19px;white-space:nowrap}
+  .upload-box{padding:20px 10px}
+  .upload-preview{gap:8px}
+  .upload-preview img{width:55px;height:55px}
+  .upload-meta strong{font-size:9px}
+  .remove-file{font-size:9px}
+  .payment-warning{font-size:9px;padding:10px}
+
+  .summary{position:static;width:100%;min-width:0}
+  .summary h2{font-size:23px;margin-bottom:18px}
+  .products{max-height:300px;overflow-x:hidden}
+  .product{
+    grid-template-columns:55px minmax(0,1fr) auto;
+    gap:9px;
+  }
+  .product-image{width:55px;height:62px}
+  .product-name{font-size:13px;overflow-wrap:anywhere}
+  .product-detail{font-size:8px}
+  .product-price{font-size:9px;white-space:nowrap}
+  .total-row{font-size:10px;gap:8px}
+  .total-row span:last-child{text-align:right}
+  .grand-total{gap:8px}
+  .grand-total span:first-child{font-size:15px}
+  .grand-total strong{font-size:22px;white-space:nowrap}
+  .savings-note{font-size:9px}
+  .place-order{height:51px;font-size:9px;letter-spacing:1.2px}
+  .secure{font-size:9px;line-height:1.7}
+
+  .success{padding:38px 17px;margin:15px auto}
+  .success h2{font-size:29px;line-height:1.2}
+  .success p{font-size:10px}
+  .order-ref{font-size:11px;overflow-wrap:anywhere}
+  .whatsapp-button{padding:14px 19px;font-size:9px}
+
+  .empty{padding:45px 15px}
+  .empty h2{font-size:26px}
+  .footer{padding:27px 16px}
+  .footer-inner{flex-direction:column;gap:20px}
+  .footer-links{flex-wrap:wrap;gap:17px}
+  .copyright{font-size:8px;line-height:1.6}
+  .toast{
+    left:13px;
+    right:13px;
+    bottom:13px;
+    text-align:center;
+    font-size:10px;
+  }
+}
+
+@media(max-width:380px){
+  .header{padding-left:11px;padding-right:11px;column-gap:7px}
+  .brand{font-size:19px;letter-spacing:1.5px}
+  .steps{font-size:6px;gap:4px}
+  .header-right{font-size:7px}
+  .page{padding-left:10px;padding-right:10px}
+  .section-card,.summary{padding:17px 11px}
+  .section-heading h2{font-size:17px}
+  .method{gap:7px;padding:12px 8px}
+  .method-description{font-size:7.5px}
+  .amount-payable strong{font-size:17px}
+  .grand-total strong{font-size:20px}
+  .account-row{font-size:8px}
+}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+
+<body>
+
+<div class="announcement">
+  <div class="announcement-track">
+    <div class="announcement-group">
+      <span class="announcement-text">A little mystery, a little magic</span>
+      <span class="announcement-text">Complimentary gift packaging with every order</span>
+      <span class="announcement-text">Enjoy an extra 10% off with online payment</span>
+    </div>
+    <div class="announcement-group" aria-hidden="true">
+      <span class="announcement-text">A little mystery, a little magic</span>
+      <span class="announcement-text">Complimentary gift packaging with every order</span>
+      <span class="announcement-text">Enjoy an extra 10% off with online payment</span>
+    </div>
+  </div>
+</div>
+
+<header class="header">
+  <a href="index.html" class="brand">MALORA<span>JEWELRY</span></a>
+  <div class="steps"><span>Bag</span><span>—</span><span class="active">Information</span><span>—</span><span>Confirmation</span></div>
+  <div class="header-right">SECURE CHECKOUT</div>
+</header>
+
+<main class="page">
+  <div class="breadcrumb">HOME <span>/</span> CART <span>/</span> CHECKOUT</div>
+
+  <div class="page-heading">
+    <div class="eyebrow">Almost yours</div>
+    <h1>Complete your order.</h1>
+    <p class="subtitle">A few little details, and your Malora experience begins.</p>
+  </div>
+
+  <div class="layout" id="checkoutLayout">
+    <form id="checkoutForm" novalidate>
+
+      <section class="section-card">
+        <div class="section-heading"><span class="number">01</span><h2>Contact Information</h2><small>YOUR DETAILS</small></div>
+        <div class="grid">
+          <div class="field full">
+            <label>Full Name <span class="required">*</span></label>
+            <input name="name" required placeholder="Enter your full name" autocomplete="name">
+            <div class="error">Please enter your full name.</div>
+          </div>
+          <div class="field">
+            <label>Phone Number <span class="required">*</span></label>
+            <input name="phone" required type="tel" placeholder="03XX XXXXXXX" autocomplete="tel">
+            <div class="error">Enter a valid Pakistani phone number.</div>
+          </div>
+          <div class="field">
+            <label>Email Address</label>
+            <input name="email" type="email" placeholder="you@example.com" autocomplete="email">
+            <div class="error">Enter a valid email address.</div>
+          </div>
+          <div class="field">
+            <label>Alternate Phone</label>
+            <input name="alternatePhone" type="tel" placeholder="Optional alternate number">
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <div class="section-heading"><span class="number">02</span><h2>Shipping Address</h2></div>
+        <div class="grid">
+          <div class="field full">
+            <label>Complete Address <span class="required">*</span></label>
+            <input name="address" required placeholder="House, street, block, area" autocomplete="street-address">
+            <div class="error">Please enter your complete address.</div>
+          </div>
+          <div class="field">
+            <label>City <span class="required">*</span></label>
+            <select name="city" required>
+              <option value="">Select city</option>
+              <option>Karachi</option><option>Lahore</option><option>Islamabad</option>
+              <option>Rawalpindi</option><option>Faisalabad</option><option>Multan</option>
+              <option>Peshawar</option><option>Quetta</option><option>Gujranwala</option>
+              <option>Sialkot</option><option>Hyderabad</option><option>Bahawalpur</option>
+              <option>Sargodha</option><option>Abbottabad</option><option>Other</option>
+            </select>
+            <div class="error">Please select your city.</div>
+          </div>
+          <div class="field">
+            <label>Postal Code</label>
+            <input name="postal" placeholder="Postal code" autocomplete="postal-code">
+          </div>
+          <div class="field full">
+            <label>Nearby Landmark</label>
+            <input name="landmark" placeholder="Nearby market, mosque or building">
+          </div>
+          <div class="field full">
+            <label>Order / Delivery Notes</label>
+            <textarea name="notes" placeholder="Gift message, preferred delivery instructions, or any special request..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <div class="section-heading"><span class="number">03</span><h2>Payment Method</h2></div>
+
+        <div class="method-list">
+          <label class="method selected" id="codMethod">
+            <input type="radio" name="payment" value="cod" checked>
+            <span class="method-icon">₨</span>
+            <span class="method-info">
+              <span class="method-title">Cash on Delivery</span>
+              <span class="method-description">Pay when your order reaches your doorstep.</span>
+            </span>
+          </label>
+
+          <label class="method" id="bankMethod">
+            <input type="radio" name="payment" value="bank">
+            <span class="method-icon">▤</span>
+            <span class="method-info">
+              <span class="method-title">Bank Transfer</span>
+              <span class="method-description">Transfer payment directly to Malora's bank account.</span>
+            </span>
+            <span class="method-discount">10% OFF</span>
+          </label>
+
+          <label class="method" id="easyMethod">
+            <input type="radio" name="payment" value="easypaisa">
+            <span class="method-icon">E</span>
+            <span class="method-info">
+              <span class="method-title">Easypaisa</span>
+              <span class="method-description">Pay through Easypaisa mobile account.</span>
+            </span>
+            <span class="method-discount">10% OFF</span>
+          </label>
+        </div>
+
+        <div class="online-payment" id="onlinePayment">
+          <div class="online-banner">
+            <strong>Enjoy 10% off your order.</strong>
+            <span>Complete your online payment and upload its screenshot to submit your order.</span>
+          </div>
+          <div class="payment-body">
+
+            <div class="account-tabs">
+              <button type="button" class="account-tab active" data-account="bank">Bank Details</button>
+              <button type="button" class="account-tab" data-account="easy">Easypaisa Details</button>
+            </div>
+
+            <div class="account-details" id="bankDetails">
+              <div class="account-name">Malora Jewelry</div>
+              <div class="account-row"><span>Bank</span><strong>YOUR BANK NAME</strong></div>
+              <div class="account-row"><span>Account Title</span><strong>MALORA JEWELRY</strong></div>
+              <div class="account-row"><span>Account Number</span><strong>000000000000</strong></div>
+              <div class="account-row"><span>IBAN</span><strong>PK00XXXX0000000000000000</strong></div>
+            </div>
+
+            <div class="account-details" id="easyDetails" hidden>
+              <div class="account-name">Malora Easypaisa</div>
+              <div class="account-row"><span>Account Title</span><strong>MALORA JEWELRY</strong></div>
+              <div class="account-row"><span>Easypaisa Number</span><strong>03XX XXXXXXX</strong></div>
+            </div>
+
+            <div class="amount-payable">
+              <span>Transfer this exact amount</span>
+              <strong id="transferAmount">PKR 0</strong>
+            </div>
+
+            <div class="field" style="margin-top:17px">
+              <label>Transaction ID / Reference Number <span class="required">*</span></label>
+              <input id="transactionId" placeholder="Enter transaction reference">
+              <div class="error">Transaction reference is required.</div>
+            </div>
+
+            <div class="upload-area">
+              <label>Payment Screenshot <span class="required">*</span></label>
+              <label class="upload-box" for="paymentProof">
+                <input type="file" id="paymentProof" accept="image/jpeg,image/png,image/webp">
+                <div class="upload-icon">↑</div>
+                <strong>Upload payment screenshot</strong>
+                <small>JPG, PNG or WEBP · Maximum 5 MB</small>
+              </label>
+              <div class="upload-preview" id="uploadPreview">
+                <img id="proofImage" alt="Payment screenshot preview">
+                <div class="upload-meta">
+                  <strong id="proofName">Screenshot</strong>
+                  <small>Screenshot selected</small>
+                </div>
+                <button type="button" class="remove-file" id="removeProof">Remove</button>
+              </div>
+            </div>
+
+            <div class="payment-warning">
+              Please transfer the exact discounted amount. Your order will be submitted with your payment reference and screenshot for verification. Do not upload an edited or unrelated screenshot.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <div class="section-heading"><span class="number">04</span><h2>Order Confirmation</h2></div>
+        <label style="display:flex;gap:10px;align-items:flex-start;font-size:10px;line-height:1.7;color:#746979">
+          <input type="checkbox" id="terms" style="accent-color:var(--purple);margin-top:3px" required>
+          <span>I confirm that my details and order are correct. I agree to Malora's order and delivery policies.</span>
+        </label>
+        <div class="error" id="termsError" style="display:none;color:var(--red);font-size:9px;margin-top:8px">Please confirm before placing your order.</div>
+      </section>
+    </form>
+
+    <aside class="summary">
+      <h2>Your Order</h2>
+      <div class="products" id="products"></div>
+      <hr>
+      <div class="total-row"><span>Subtotal</span><span id="subtotal">PKR 0</span></div>
+      <div class="total-row discount"><span>Product Savings</span><span id="productSavings">− PKR 0</span></div>
+      <div class="total-row online-discount" id="onlineDiscount"><span>Online Payment Discount (10%)</span><span id="onlineDiscountValue">− PKR 0</span></div>
+      <div class="total-row"><span>Delivery</span><span id="shipping">PKR 200</span></div>
+      <hr>
+      <div class="grand-total"><span>Total Payable</span><strong id="total">PKR 0</strong></div>
+      <div class="savings-note" id="savingsNote">Choose online payment to unlock an additional 10% discount.</div>
+      <button type="button" class="place-order" id="placeOrder">PLACE MY ORDER</button>
+      <div class="summary-note" id="buttonNote">Cash on Delivery · Pay at your doorstep</div>
+      <div class="secure">♡ &nbsp; Your order is prepared with care. Online payments are subject to verification before dispatch.</div>
+    </aside>
+  </div>
+
+  <section class="empty" id="emptyState">
+    <h2>Your bag is empty.</h2>
+    <p>Discover a little something beautiful at Malora.</p>
+    <a href="index.html">EXPLORE MALORA</a>
+  </section>
+
+  <section class="success" id="success">
+    <div class="success-mark">✓</div>
+    <h2>Your order is ready.</h2>
+    <p id="successMessage">Your order details have been prepared. Continue to WhatsApp to submit your order to Malora.</p>
+    <div class="order-ref" id="orderReference"></div>
+    <a href="#" class="whatsapp-button" id="whatsappLink" target="_blank" rel="noopener">SEND ORDER TO MALORA</a>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div><div class="footer-brand">MALORA</div><p>Jewelry for your little moments of magic.</p></div>
+    <div class="footer-links"><a href="index.html">Home</a><a href="index.html#shop">Shop</a><a href="mailto:hello@malora.com">Contact</a></div>
+  </div>
+  <div class="copyright">© 2026 Malora Jewelry. All rights reserved.</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =====================================
+   MALORA CHECKOUT CONFIGURATION
+===================================== */
+const CONFIG={
+  whatsappNumber:"923001234567", // Replace with Malora's real WhatsApp number
+  shippingFee:200,
+  freeShippingThreshold:5000,
+
+  // Replace these demo account details before publishing.
+  bank:{
+    bankName:"YOUR BANK NAME",
+    accountTitle:"MALORA JEWELRY",
+    accountNumber:"000000000000",
+    iban:"PK00XXXX0000000000000000"
+  },
+  easypaisa:{
+    accountTitle:"MALORA JEWELRY",
+    number:"03XX XXXXXXX"
+  },
+
+  // Demo necklace shown when cart is empty.
+  demoProduct:{
+    id:"malora-necklace-demo",
+    name:"Celeste Pearl Necklace",
+    finish:"Gold Plated",
+    price:2499,
+    oldPrice:3499,
+    quantity:1,
+    image:"https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=85"
+  }
+};
+
+const STORAGE_KEY="maloraCart";
+let cart=[];
+let proofFile=null;
+let proofPreviewURL=null;
+let activeAccount="bank";
+let currentOrder=null;
+
+const $=id=>document.getElementById(id);
+const money=value=>"PKR "+Number(value).toLocaleString("en-PK");
+
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g,char=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  })[char]);
+}
+
+function loadCart(){
+  try{
+    const data=JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]");
+    cart=Array.isArray(data)?data.filter(item=>
+      item&&typeof item.name==="string"&&
+      Number(item.price)>0&&Number(item.quantity)>0
+    ):[];
+  }catch(e){cart=[]}
+
+  // Demo mode: let the customer test checkout without adding a product.
+  if(!cart.length){
+    cart=[{...CONFIG.demoProduct}];
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(cart));
+  }
+  render();
+}
+
+function totals(){
+  const subtotal=cart.reduce((sum,item)=>sum+Number(item.price)*Number(item.quantity),0);
+  const original=cart.reduce((sum,item)=>sum+Math.max(Number(item.oldPrice||item.price),Number(item.price))*Number(item.quantity),0);
+  const productSavings=original-subtotal;
+  const online=document.querySelector('input[name="payment"]:checked').value!=="cod";
+  const onlineDiscount=online?Math.round(subtotal*.10):0;
+  const afterDiscount=subtotal-onlineDiscount;
+  const shipping=afterDiscount>=CONFIG.freeShippingThreshold?0:CONFIG.shippingFee;
+  return {subtotal,productSavings,onlineDiscount,shipping,total:afterDiscount+shipping};
+}
+
+function render(){
+  $("products").innerHTML=cart.map(item=>`
+    <div class="product">
+      <div class="product-image">
+        <img src="${escapeHTML(item.image||"")}" alt="${escapeHTML(item.name)}">
+        <span class="qty">${Number(item.quantity)}</span>
+      </div>
+      <div>
+        <div class="product-name">${escapeHTML(item.name)}</div>
+        <div class="product-detail">${escapeHTML(item.finish||"Jewelry")} · Qty ${Number(item.quantity)}</div>
+      </div>
+      <div class="product-price">${money(Number(item.price)*Number(item.quantity))}</div>
+    </div>
+  `).join("");
+
+  const t=totals();
+  $("subtotal").textContent=money(t.subtotal);
+  $("productSavings").textContent="− "+money(t.productSavings);
+  $("onlineDiscount").classList.toggle("show",t.onlineDiscount>0);
+  $("onlineDiscountValue").textContent="− "+money(t.onlineDiscount);
+  $("shipping").textContent=t.shipping===0?"FREE":money(t.shipping);
+  $("total").textContent=money(t.total);
+  $("transferAmount").textContent=money(t.total);
+
+  $("savingsNote").textContent=t.onlineDiscount
+    ?"You save "+money(t.onlineDiscount)+" with online payment."
+    :"Choose online payment to unlock an additional 10% discount.";
+
+  const online=document.querySelector('input[name="payment"]:checked').value!=="cod";
+  $("buttonNote").textContent=online
+    ?"Upload your payment proof to continue."
+    :"Cash on Delivery · Pay at your doorstep";
+
+  $("placeOrder").textContent=online?"SUBMIT PAID ORDER":"PLACE MY ORDER";
+}
+
+function updatePayment(){
+  const method=document.querySelector('input[name="payment"]:checked').value;
+  document.querySelectorAll(".method").forEach(el=>el.classList.remove("selected"));
+  $(method==="cod"?"codMethod":method==="bank"?"bankMethod":"easyMethod").classList.add("selected");
+  $("onlinePayment").classList.toggle("show",method!=="cod");
+
+  if(method!=="cod"){
+    activeAccount=method==="bank"?"bank":"easy";
+    updateAccount();
+  }
+  render();
+}
+
+document.querySelectorAll('input[name="payment"]').forEach(input=>{
+  input.addEventListener("change",updatePayment);
+});
+
+document.querySelectorAll(".account-tab").forEach(button=>{
+  button.addEventListener("click",()=>{
+    activeAccount=button.dataset.account;
+    updateAccount();
+  });
+});
+
+function updateAccount(){
+  document.querySelectorAll(".account-tab").forEach(button=>{
+    button.classList.toggle("active",button.dataset.account===activeAccount);
+  });
+  $("bankDetails").hidden=activeAccount!=="bank";
+  $("easyDetails").hidden=activeAccount!=="easy";
+}
+
+function setAccountDetails(){
+  const b=CONFIG.bank;
+  const e=CONFIG.easypaisa;
+  $("bankDetails").innerHTML=`
+    <div class="account-name">Bank Transfer</div>
+    <div class="account-row"><span>Bank</span><strong>${escapeHTML(b.bankName)}</strong></div>
+    <div class="account-row"><span>Account Title</span><strong>${escapeHTML(b.accountTitle)}</strong></div>
+    <div class="account-row"><span>Account Number</span><strong>${escapeHTML(b.accountNumber)} <button class="copy-btn" type="button" data-copy="${escapeHTML(b.accountNumber)}">COPY</button></strong></div>
+    <div class="account-row"><span>IBAN</span><strong>${escapeHTML(b.iban)} <button class="copy-btn" type="button" data-copy="${escapeHTML(b.iban)}">COPY</button></strong></div>`;
+  $("easyDetails").innerHTML=`
+    <div class="account-name">Easypaisa</div>
+    <div class="account-row"><span>Account Title</span><strong>${escapeHTML(e.accountTitle)}</strong></div>
+    <div class="account-row"><span>Easypaisa Number</span><strong>${escapeHTML(e.number)} <button class="copy-btn" type="button" data-copy="${escapeHTML(e.number)}">COPY</button></strong></div>`;
+}
+
+document.addEventListener("click",event=>{
+  const button=event.target.closest("[data-copy]");
+  if(!button)return;
+  navigator.clipboard?.writeText(button.dataset.copy).then(
+    ()=>showToast("Copied to clipboard."),
+    ()=>showToast("Please copy the account detail manually.")
+  );
+});
+
+/* SCREENSHOT UPLOAD */
+$("paymentProof").addEventListener("change",event=>{
+  const file=event.target.files[0];
+  if(!file)return;
+
+  if(!["image/jpeg","image/png","image/webp"].includes(file.type)){
+    showToast("Please upload a JPG, PNG or WEBP image.");
+    event.target.value="";
+    return;
+  }
+  if(file.size>5*1024*1024){
+    showToast("Screenshot must be under 5 MB.");
+    event.target.value="";
+    return;
+  }
+
+  proofFile=file;
+  if(proofPreviewURL)URL.revokeObjectURL(proofPreviewURL);
+  proofPreviewURL=URL.createObjectURL(file);
+  $("proofImage").src=proofPreviewURL;
+  $("proofName").textContent=file.name;
+  $("uploadPreview").classList.add("show");
+});
+
+function removeProof(){
+  proofFile=null;
+  $("paymentProof").value="";
+  $("uploadPreview").classList.remove("show");
+  if(proofPreviewURL)URL.revokeObjectURL(proofPreviewURL);
+  proofPreviewURL=null;
+}
+$("removeProof").addEventListener("click",removeProof);
+
+/* VALIDATION */
+function validate(){
+  let valid=true;
+  const form=$("checkoutForm");
+
+  form.querySelectorAll("[required]").forEach(input=>{
+    let ok=input.type==="checkbox"?input.checked:input.value.trim().length>0;
+
+    if(input.name==="name")ok=input.value.trim().length>=3;
+    if(input.name==="phone"){
+      const digits=input.value.replace(/\D/g,"");
+      ok=/^(03\d{9}|923\d{9})$/.test(digits);
+    }
+
+    const field=input.closest(".field");
+    if(field)field.classList.toggle("invalid",!ok);
+    if(!ok){
+      valid=false;
+      if(input.type!=="checkbox"&&!field)input.classList.add("invalid");
+    }
+  });
+
+  const email=form.elements.email;
+  if(email.value.trim()&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){
+    email.closest(".field").classList.add("invalid");
+    valid=false;
+  }
+
+  const method=document.querySelector('input[name="payment"]:checked').value;
+  if(method!=="cod"){
+    const transaction=$("transactionId");
+    const transactionField=transaction.closest(".field");
+    const transactionValid=transaction.value.trim().length>=4;
+    transactionField.classList.toggle("invalid",!transactionValid);
+    if(!transactionValid)valid=false;
+    if(!proofFile){
+      showToast("Please upload your payment screenshot.");
+      valid=false;
+    }
+  }
+
+  $("termsError").style.display=$("terms").checked?"none":"block";
+  if(!$("terms").checked)valid=false;
+
+  if(!valid){
+    const first=form.querySelector(".field.invalid input,.field.invalid select,.field.invalid textarea");
+    if(first)first.focus();
+  }
+  return valid;
+}
+
+$("checkoutForm").addEventListener("input",event=>{
+  const field=event.target.closest(".field");
+  if(field)field.classList.remove("invalid");
+});
+
+$("placeOrder").addEventListener("click",submitOrder);
+
+function submitOrder(){
+  if(!validate()){
+    showToast("Please complete all required information.");
+    return;
+  }
+
+  const form=$("checkoutForm");
+  const data=new FormData(form);
+  const method=data.get("payment");
+  const t=totals();
+  const reference="MAL-"+Date.now().toString().slice(-8);
+
+  currentOrder={
+    reference,
+    customer:{
+      name:data.get("name"),
+      phone:data.get("phone"),
+      email:data.get("email"),
+      alternatePhone:data.get("alternatePhone"),
+      address:data.get("address"),
+      city:data.get("city"),
+      postal:data.get("postal"),
+      landmark:data.get("landmark"),
+      notes:data.get("notes")
+    },
+    payment:method,
+    transactionId:method==="cod"?"Not applicable":$("transactionId").value.trim(),
+    items:cart,
+    totals:t,
+    createdAt:new Date().toISOString()
+  };
+
+  const methodLabel={
+    cod:"Cash on Delivery",
+    bank:"Bank Transfer",
+    easypaisa:"Easypaisa"
+  }[method];
+
+  const lines=[
+    "MALORA JEWELRY - NEW ORDER",
+    "Order Reference: "+reference,
+    "",
+    "CUSTOMER DETAILS",
+    "Name: "+currentOrder.customer.name,
+    "Phone: "+currentOrder.customer.phone,
+    "Alternate Phone: "+(currentOrder.customer.alternatePhone||"Not provided"),
+    "Email: "+(currentOrder.customer.email||"Not provided"),
+    "",
+    "DELIVERY ADDRESS",
+    currentOrder.customer.address,
+    currentOrder.customer.city,
+    "Postal Code: "+(currentOrder.customer.postal||"Not provided"),
+    "Landmark: "+(currentOrder.customer.landmark||"None"),
+    "Notes: "+(currentOrder.customer.notes||"None"),
+    "",
+    "PRODUCTS",
+    ...cart.map(item=>item.name+" x "+item.quantity+" = "+money(item.price*item.quantity)),
+    "",
+    "Subtotal: "+money(t.subtotal),
+    "Product savings: "+money(t.productSavings),
+    "Online payment discount: "+money(t.onlineDiscount),
+    "Shipping: "+(t.shipping===0?"FREE":money(t.shipping)),
+    "TOTAL: "+money(t.total),
+    "",
+    "PAYMENT METHOD: "+methodLabel,
+    "Transaction ID: "+currentOrder.transactionId,
+    method!=="cod"?"Payment screenshot selected: "+proofFile.name:""
+  ].filter(Boolean);
+
+  const message=encodeURIComponent(lines.join("\n"));
+  const number=CONFIG.whatsappNumber.replace(/\D/g,"");
+
+  if(!/^92\d{10}$/.test(number)){
+    showToast("Please configure Malora's WhatsApp number first.");
+    return;
+  }
+
+  const url="https://wa.me/"+number+"?text="+message;
+
+  // Show the confirmation screen and provide the WhatsApp order handoff.
+  $("checkoutLayout").style.display="none";
+  $("success").classList.add("show");
+  $("orderReference").textContent=reference;
+
+  if(method==="cod"){
+    $("successMessage").textContent="Your COD order details are ready. Continue to WhatsApp to send your order to Malora.";
+  }else{
+    $("successMessage").textContent="Your payment details and screenshot are selected. Continue to WhatsApp and attach the same screenshot to submit your order for payment verification.";
+  }
+
+  $("whatsappLink").href=url;
+  $("success").scrollIntoView({behavior:"smooth",block:"center"});
+
+  // Keep the demo cart available; production order storage requires a backend.
+}
+
+function showToast(message){
+  const toast=$("toast");
+  toast.textContent=message;
+  toast.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>toast.classList.remove("show"),3000);
+}
+
+setAccountDetails();
+loadCart();
+</script>
+</body>
+</html>
