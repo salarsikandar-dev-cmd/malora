@@ -1,0 +1,1076 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#faf6f3">
+<title>Celeste Pearl Necklace | Malora</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --cream:#faf6f3;
+  --white:#fff;
+  --ink:#35283b;
+  --purple:#705477;
+  --deep:#302238;
+  --lavender:#eee6f2;
+  --rose:#e8c7c4;
+  --gold:#bd9a65;
+  --muted:#8d808e;
+  --line:#e8dfe5;
+  --green:#537b64;
+  --shadow:0 15px 45px rgba(57,36,61,.08);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
+}
+button,a{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;object-fit:cover}
+button:focus-visible,a:focus-visible{outline:2px solid var(--purple);outline-offset:4px}
+
+/* ANNOUNCEMENT MARQUEE */
+.announcement{
+  width:100%;
+  overflow:hidden;
+  white-space:nowrap;
+  background:var(--deep);
+  padding:10px 0 11px;
+  border-bottom:1px solid #9b7b9b;
+}
+.announcement-track{
+  display:flex;
+  width:max-content;
+  animation:maloraMarquee 32s linear infinite;
+  will-change:transform;
+}
+.announcement-group{
+  display:flex;
+  align-items:center;
+  flex:0 0 auto;
+  gap:0;
+}
+.announcement-text{
+  flex:0 0 auto;
+  padding:0 38px;
+  color:#fff;
+  font:400 23px/1.4 'Great Vibes',cursive;
+  letter-spacing:.5px;
+}
+.announcement:hover .announcement-track{
+  animation-play-state:paused;
+}
+@keyframes maloraMarquee{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
+/* HEADER */
+.header{
+  height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 6%;
+  background:#fffaf7;
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+.brand{
+  font:600 27px 'Playfair Display',serif;
+  letter-spacing:4px;
+}
+.brand span{
+  display:block;
+  font:9px 'DM Sans',sans-serif;
+  letter-spacing:6px;
+  text-align:center;
+  margin-top:3px;
+}
+.nav{
+  display:flex;
+  align-items:center;
+  gap:32px;
+  font-size:11px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+.nav a{transition:.25s}
+.nav a:hover{color:var(--gold)}
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:19px;
+}
+.header-icon{
+  border:0;
+  background:transparent;
+  color:var(--ink);
+  font-size:19px;
+  position:relative;
+}
+.cart-count{
+  position:absolute;
+  top:-7px;
+  right:-9px;
+  background:var(--purple);
+  color:white;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:9px;
+}
+.mobile-menu{display:none}
+
+/* BREADCRUMB */
+.breadcrumb{
+  max-width:1320px;
+  margin:auto;
+  padding:23px 35px 10px;
+  font-size:10px;
+  color:var(--muted);
+  letter-spacing:.5px;
+}
+.breadcrumb span{margin:0 9px;color:#c0a9b9}
+
+/* PRODUCT LAYOUT */
+.product-container{
+  max-width:1320px;
+  margin:0 auto;
+  padding:12px 35px 65px;
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:48px;
+  align-items:start;
+}
+
+/* GALLERY */
+.gallery{min-width:0}
+.main-image{
+  height:560px;
+  overflow:hidden;
+  border-radius:12px;
+  background:var(--lavender);
+  position:relative;
+}
+.main-image img{
+  width:100%;
+  height:100%;
+  transition:opacity .25s,transform .7s;
+}
+.main-image:hover img{transform:scale(1.035)}
+.image-label{
+  position:absolute;
+  top:18px;
+  left:18px;
+  z-index:2;
+  background:#fff;
+  padding:9px 14px;
+  font-size:9px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+.gallery-thumbnails{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:13px;
+}
+.thumbnail{
+  height:115px;
+  overflow:hidden;
+  border:1px solid transparent;
+  border-radius:8px;
+  background:var(--lavender);
+  padding:0;
+}
+.thumbnail img{height:100%;transition:.3s}
+.thumbnail.active{border:1px solid var(--ink)}
+.thumbnail:hover img{transform:scale(1.06)}
+
+/* PRODUCT INFO */
+.product-info{padding:12px 0 0}
+.product-eyebrow{
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:2.8px;
+  color:var(--gold);
+  margin-bottom:13px;
+}
+.product-title{
+  font:500 clamp(32px,3.5vw,48px)/1.12 'Playfair Display',serif;
+  margin-bottom:11px;
+}
+.product-subtitle{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+  margin-bottom:16px;
+}
+.rating{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:11px;
+  margin-bottom:22px;
+}
+.stars{color:#c49a55;letter-spacing:2px;font-size:15px}
+.rating-count{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+
+/* PRICE */
+.price-area{
+  padding:17px 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.old-price{
+  color:#a59ba4;
+  text-decoration:line-through;
+  font-size:14px;
+}
+.price-row{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:5px;
+}
+.current-price{
+  font:600 34px 'Playfair Display',serif;
+  color:var(--purple);
+}
+.save-tag{
+  background:#e8f1e8;
+  color:#52765b;
+  padding:6px 10px;
+  font-size:10px;
+  font-weight:700;
+  border-radius:3px;
+}
+.tax-note{font-size:10px;color:var(--muted);margin-top:5px}
+
+/* STOCK */
+.stock-box{
+  margin:21px 0;
+  padding:15px 15px 13px;
+  background:#f3ebf0;
+  border:1px solid #e8d8e5;
+  border-radius:7px;
+}
+.stock-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:11px;
+  font-size:11px;
+}
+.stock-status{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:700;
+  color:#8e5367;
+}
+.stock-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#c56a7e;
+  box-shadow:0 0 0 0 rgba(197,106,126,.55);
+  animation:stockPulse 1.8s infinite;
+}
+@keyframes stockPulse{
+  0%{box-shadow:0 0 0 0 rgba(197,106,126,.5)}
+  70%{box-shadow:0 0 0 8px rgba(197,106,126,0)}
+  100%{box-shadow:0 0 0 0 rgba(197,106,126,0)}
+}
+.stock-number{color:var(--muted);font-size:10px}
+.stock-bar{
+  height:5px;
+  background:#dfd2dc;
+  border-radius:10px;
+  overflow:hidden;
+}
+.stock-progress{
+  height:100%;
+  width:35%;
+  background:linear-gradient(90deg,#a979a3,#d58d9b);
+  border-radius:10px;
+  transform-origin:left;
+  animation:stockFill 1.3s ease-out both;
+}
+@keyframes stockFill{from{transform:scaleX(.1)}to{transform:scaleX(1)}}
+.stock-caption{font-size:9px;color:var(--muted);margin-top:8px}
+
+/* PRODUCT OPTIONS */
+.option-label{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin:21px 0 11px;
+}
+.color-options{display:flex;gap:12px}
+.color-option{
+  width:31px;
+  height:31px;
+  border-radius:50%;
+  border:3px solid var(--cream);
+  outline:1px solid transparent;
+  background:linear-gradient(135deg,#d9bd80,#fff1c7,#b58d4b);
+}
+.color-option.active{outline-color:var(--purple)}
+.quantity-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:22px 0;
+}
+.quantity-control{
+  display:flex;
+  align-items:center;
+  border:1px solid var(--line);
+  border-radius:30px;
+  height:42px;
+}
+.quantity-control button{
+  width:38px;
+  height:40px;
+  border:0;
+  background:transparent;
+  color:var(--ink);
+  font-size:17px;
+}
+.quantity-control span{width:28px;text-align:center;font-size:12px}
+
+/* BUTTONS */
+.action-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:51px;
+  border-radius:30px;
+  border:1px solid var(--deep);
+  background:var(--deep);
+  color:white;
+  font-size:10px;
+  letter-spacing:1.8px;
+  font-weight:700;
+  transition:.3s;
+}
+.action-button:hover{background:var(--purple);border-color:var(--purple);transform:translateY(-2px)}
+.buy-button{
+  margin-top:10px;
+  background:transparent;
+  color:var(--deep);
+}
+.buy-button:hover{color:white}
+.shipping-note{
+  text-align:center;
+  margin:13px 0 22px;
+  color:var(--muted);
+  font-size:10px;
+}
+.shipping-note span{color:var(--green);font-weight:700}
+
+/* TRUST */
+.trust-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  background:#f1eaf0;
+  border-radius:9px;
+  padding:17px;
+}
+.trust-item{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:10px;
+  color:#55475a;
+}
+.trust-symbol{
+  width:26px;
+  height:26px;
+  border:1px solid #cbb9ca;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:12px;
+}
+
+/* DESCRIPTION */
+.description{
+  margin-top:27px;
+  border-top:1px solid var(--line);
+}
+.description details{border-bottom:1px solid var(--line)}
+.description summary{
+  padding:17px 0;
+  font:500 15px 'Playfair Display',serif;
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  justify-content:space-between;
+}
+.description summary:after{content:"+";font:18px 'DM Sans',sans-serif;color:var(--gold)}
+.description details[open] summary:after{content:"−"}
+.description p{
+  padding:0 0 17px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.9;
+}
+
+/* REVERSED CONTRAST SECTION */
+.dark-story{
+  background:var(--deep);
+  color:#fff8f1;
+  padding:76px 7%;
+  position:relative;
+  overflow:hidden;
+}
+.dark-story:before{
+  content:"";
+  position:absolute;
+  width:430px;
+  height:430px;
+  border:1px solid rgba(225,197,177,.15);
+  border-radius:50%;
+  right:-120px;
+  top:-180px;
+}
+.dark-story:after{
+  content:"";
+  position:absolute;
+  width:280px;
+  height:280px;
+  border:1px solid rgba(225,197,177,.13);
+  border-radius:50%;
+  right:-45px;
+  top:-105px;
+}
+.story-inner{
+  max-width:1160px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:65px;
+  position:relative;
+  z-index:2;
+}
+.story-image{
+  height:390px;
+  border-radius:9px;
+  overflow:hidden;
+  background:#59445f;
+}
+.story-image img{height:100%}
+.story-copy .eyebrow{color:#dfbd9b}
+.story-copy h2{
+  font:500 clamp(35px,4vw,53px)/1.15 'Playfair Display',serif;
+  margin:17px 0;
+}
+.story-copy p{
+  color:#d9cbd8;
+  font-size:12px;
+  line-height:2;
+  max-width:450px;
+}
+.story-quote{
+  display:block;
+  margin-top:25px;
+  font:italic 20px 'Playfair Display',serif;
+  color:#e8c8ad;
+}
+
+/* FEATURES */
+.section{
+  max-width:1220px;
+  margin:auto;
+  padding:76px 35px;
+}
+.section-heading{text-align:center;margin-bottom:40px}
+.section-heading small{
+  text-transform:uppercase;
+  letter-spacing:3px;
+  color:var(--gold);
+  font-size:9px;
+}
+.section-heading h2{
+  font:500 clamp(29px,3vw,39px) 'Playfair Display',serif;
+  margin-top:12px;
+}
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:35px;
+}
+.feature{text-align:center;padding:18px}
+.feature-number{
+  width:49px;
+  height:49px;
+  border-radius:50%;
+  background:var(--lavender);
+  display:grid;
+  place-items:center;
+  margin:0 auto 17px;
+  font:18px 'Playfair Display',serif;
+  color:var(--purple);
+}
+.feature h3{font:500 19px 'Playfair Display',serif;margin-bottom:9px}
+.feature p{font-size:11px;line-height:1.8;color:var(--muted);max-width:270px;margin:auto}
+
+/* REVIEWS */
+.reviews{
+  background:#f0e9ef;
+  padding:72px 35px;
+}
+.reviews-inner{max-width:1150px;margin:auto}
+.review-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.review-card{
+  background:#fff;
+  border:1px solid #e6dce5;
+  border-radius:10px;
+  padding:22px;
+}
+.review-person{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.review-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--lavender);
+  display:grid;place-items:center;
+  color:var(--purple);
+  font:15px 'Playfair Display',serif;
+}
+.review-name{font-size:11px;font-weight:700}
+.review-verified{font-size:9px;color:var(--green);margin-top:3px}
+.review-stars{color:#c49a55;font-size:12px;letter-spacing:1px;margin-bottom:11px}
+.review-card p{font:15px 'Playfair Display',serif;line-height:1.6}
+.review-disclaimer{text-align:center;font-size:9px;color:var(--muted);margin-top:20px}
+
+/* RELATED */
+.related{max-width:1220px;margin:auto;padding:75px 35px}
+.related-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.related-card{min-width:0}
+.related-image{
+  height:260px;
+  border-radius:9px;
+  overflow:hidden;
+  background:var(--lavender);
+}
+.related-image img{height:100%;transition:.5s}
+.related-card:hover img{transform:scale(1.05)}
+.related-card h3{font:500 18px 'Playfair Display',serif;margin-top:13px}
+.related-card p{font-size:11px;color:var(--muted);margin-top:5px}
+.related-price{font-weight:700;color:var(--purple);margin-top:8px;font-size:12px}
+
+/* FOOTER */
+.footer{
+  background:#f0e8ee;
+  padding:40px 6%;
+  border-top:1px solid var(--line);
+}
+.footer-inner{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.footer-brand{font:24px 'Playfair Display',serif;letter-spacing:3px}
+.footer p{font-size:10px;color:var(--muted);margin-top:7px}
+.footer-links{display:flex;gap:22px;font-size:10px}
+.copyright{
+  max-width:1200px;
+  margin:25px auto 0;
+  padding-top:18px;
+  border-top:1px solid #ded2dc;
+  font-size:9px;
+  color:var(--muted);
+}
+
+/* CART NOTICE */
+.toast{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  background:var(--deep);
+  color:white;
+  padding:16px 22px;
+  border-radius:8px;
+  font-size:12px;
+  box-shadow:var(--shadow);
+  z-index:100;
+  opacity:0;
+  transform:translateY(15px);
+  pointer-events:none;
+  transition:.3s;
+}
+.toast.show{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .product-container{gap:27px}
+  .main-image{height:440px}
+  .story-inner{gap:35px}
+  .story-image{height:330px}
+  .nav{gap:17px}
+}
+@media(max-width:700px){
+  .header{height:66px;padding:0 19px}
+  .brand{font-size:23px}
+  .nav{
+    display:none;
+    position:absolute;
+    top:66px;left:0;right:0;
+    padding:22px;
+    background:#fffaf7;
+    border-bottom:1px solid var(--line);
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .nav.open{display:flex}
+  .mobile-menu{display:block}
+  .header-right{gap:15px}
+  .announcement-text{font-size:21px;padding:0 25px}
+  .breadcrumb{padding:18px 20px 8px}
+  .product-container{
+    padding:10px 19px 45px;
+    grid-template-columns:1fr;
+    gap:25px;
+  }
+  .main-image{height:auto;aspect-ratio:1/1}
+  .gallery-thumbnails{gap:8px}
+  .thumbnail{height:auto;aspect-ratio:1/1}
+  .product-info{padding:5px 0}
+  .product-title{font-size:37px}
+  .current-price{font-size:31px}
+  .dark-story{padding:55px 22px}
+  .story-inner{grid-template-columns:1fr;gap:27px}
+  .story-image{height:300px}
+  .story-copy h2{font-size:39px}
+  .section{padding:58px 20px}
+  .features{grid-template-columns:1fr;gap:12px}
+  .feature{padding:14px}
+  .reviews{padding:55px 20px}
+  .review-grid{grid-template-columns:1fr;gap:12px}
+  .related{padding:55px 20px}
+  .related-grid{grid-template-columns:1fr 1fr;gap:13px}
+  .related-image{height:auto;aspect-ratio:1/1}
+  .related-card:last-child{display:none}
+  .footer-inner{flex-direction:column;align-items:flex-start}
+  .footer-links{flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition-duration:.01ms!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- CONTINUOUS MARQUEE: BOTH GROUPS MUST REMAIN IDENTICAL -->
+<div class="announcement" aria-label="Malora special offers">
+  <div class="announcement-track">
+    <div class="announcement-group">
+      <span class="announcement-text">A little mystery, a little magic</span>
+      <span class="announcement-text">Complimentary gift packaging with every order</span>
+      <span class="announcement-text">Discover your next timeless treasure</span>
+    </div>
+    <div class="announcement-group" aria-hidden="true">
+      <span class="announcement-text">A little mystery, a little magic</span>
+      <span class="announcement-text">Complimentary gift packaging with every order</span>
+      <span class="announcement-text">Discover your next timeless treasure</span>
+    </div>
+  </div>
+</div>
+
+<header class="header">
+  <a href="#" class="brand">MALORA<span>JEWELRY</span></a>
+
+  <nav class="nav" id="mainNav">
+    <a href="#">Home</a>
+    <a href="#product">Shop</a>
+    <a href="#story">Our Story</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#footer">Contact</a>
+  </nav>
+
+  <div class="header-right">
+    <button class="header-icon mobile-menu" id="menuToggle" aria-label="Open menu">☰</button>
+    <button class="header-icon" aria-label="Shopping bag" onclick="showToast('Your shopping bag is ready.')">
+      ♡
+    </button>
+    <button class="header-icon" aria-label="Cart">
+      ♧<span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<div class="breadcrumb">Home <span>/</span> Jewelry <span>/</span> Necklaces <span>/</span> Celeste Pearl</div>
+
+<main>
+<section class="product-container" id="product">
+
+  <!-- PRODUCT GALLERY -->
+  <div class="gallery">
+    <div class="main-image">
+      <span class="image-label">Malora Signature Collection</span>
+      <img id="mainProductImage"
+        src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=1100&q=90"
+        alt="Celeste pearl necklace">
+    </div>
+
+    <div class="gallery-thumbnails">
+      <button class="thumbnail active" onclick="changeImage(this,0)" aria-label="Main necklace view">
+        <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=300&q=80" alt="Necklace main view">
+      </button>
+      <button class="thumbnail" onclick="changeImage(this,1)" aria-label="Necklace detail">
+        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=300&q=80" alt="Necklace detail">
+      </button>
+      <button class="thumbnail" onclick="changeImage(this,2)" aria-label="Pearl jewelry styling">
+        <img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=300&q=80" alt="Pearl jewelry">
+      </button>
+      <button class="thumbnail" onclick="changeImage(this,3)" aria-label="Gold necklace close-up">
+        <img src="https://images.unsplash.com/photo-1599459183200-59c7687a0279?auto=format&fit=crop&w=300&q=80" alt="Gold necklace close-up">
+      </button>
+    </div>
+  </div>
+
+  <!-- PRODUCT DETAILS -->
+  <div class="product-info">
+    <div class="product-eyebrow">The Celeste Collection</div>
+
+    <h1 class="product-title">Celeste Pearl Necklace</h1>
+
+    <p class="product-subtitle">
+      A delicate expression of timeless elegance. Designed to bring a soft,
+      luminous touch to your everyday moments and special occasions.
+    </p>
+
+    <div class="rating">
+      <span class="stars">★★★★★</span>
+      <strong>4.9</strong>
+      <a href="#reviews" class="rating-count">Customer reviews</a>
+    </div>
+
+    <div class="price-area">
+      <div class="old-price">PKR 6,499</div>
+      <div class="price-row">
+        <span class="current-price">PKR 4,499</span>
+        <span class="save-tag">SAVE PKR 2,000</span>
+      </div>
+      <div class="tax-note">Special introductory price · Limited-time offer</div>
+    </div>
+
+    <!-- SAMPLE STOCK: UPDATE TO MATCH REAL INVENTORY -->
+    <div class="stock-box">
+      <div class="stock-top">
+        <div class="stock-status">
+          <span class="stock-dot"></span>
+          Only 7 pieces available
+        </div>
+        <span class="stock-number">Limited collection</span>
+      </div>
+      <div class="stock-bar">
+        <div class="stock-progress"></div>
+      </div>
+      <div class="stock-caption">Small-batch collection · Restock is not guaranteed</div>
+    </div>
+
+    <div class="option-label">Finish</div>
+    <div class="color-options">
+      <button class="color-option active" aria-label="Gold finish" title="Gold finish"></button>
+    </div>
+
+    <div class="quantity-row">
+      <span class="option-label" style="margin:0">Quantity</span>
+      <div class="quantity-control">
+        <button onclick="changeQuantity(-1)" aria-label="Decrease quantity">−</button>
+        <span id="quantity">1</span>
+        <button onclick="changeQuantity(1)" aria-label="Increase quantity">+</button>
+      </div>
+    </div>
+
+    <button class="action-button" onclick="addToCart()">ADD TO BAG</button>
+    <button class="action-button buy-button" onclick="buyNow()">BUY IT NOW</button>
+
+    <div class="shipping-note"><span>Complimentary gift packaging</span> · Delivery calculated at checkout</div>
+
+    <div class="trust-grid">
+      <div class="trust-item"><span class="trust-symbol">◇</span> Secure checkout</div>
+      <div class="trust-item"><span class="trust-symbol">↗</span> Tracked delivery</div>
+      <div class="trust-item"><span class="trust-symbol">♡</span> Gift-ready packaging</div>
+      <div class="trust-item"><span class="trust-symbol">✓</span> Customer support</div>
+    </div>
+
+    <div class="description">
+      <details open>
+        <summary>Product Description</summary>
+        <p>
+          Meet Celeste — a graceful necklace inspired by the beauty of
+          understated luxury. Its delicate silhouette makes it an effortless
+          addition to both everyday outfits and occasion wear.
+        </p>
+      </details>
+      <details>
+        <summary>Product Details</summary>
+        <p>
+          Style: Pearl-inspired necklace<br>
+          Finish: Gold-tone<br>
+          Collection: Celeste<br>
+          Packaging: Malora gift packaging
+        </p>
+      </details>
+      <details>
+        <summary>Shipping & Returns</summary>
+        <p>
+          Delivery timelines and return eligibility should be confirmed
+          according to Malora's current shipping and returns policy.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- REVERSED CONTRAST: DARK SECTION -->
+<section class="dark-story" id="story">
+  <div class="story-inner">
+    <div class="story-image">
+      <img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1000&q=85"
+        alt="Elegant pearl jewelry detail">
+    </div>
+    <div class="story-copy">
+      <div class="eyebrow">A little more than jewelry</div>
+      <h2>Made to be remembered.</h2>
+      <p>
+        Some pieces are more than an accessory. They become part of your
+        moments, your memories, and the little details that make an occasion
+        unforgettable.
+      </p>
+      <span class="story-quote">“Elegance lives in the details.”</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT BENEFITS -->
+<section class="section">
+  <div class="section-heading">
+    <small>The Malora Difference</small>
+    <h2>Why you'll love Celeste</h2>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <div class="feature-number">01</div>
+      <h3>Timeless Design</h3>
+      <p>A delicate silhouette designed to complement your personal style.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-number">02</div>
+      <h3>Effortless Styling</h3>
+      <p>Easy to pair with everyday outfits and special occasion looks.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-number">03</div>
+      <h3>Gift Worthy</h3>
+      <p>Beautifully presented in Malora's complimentary gift packaging.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="reviews-inner">
+    <div class="section-heading">
+      <small>Kind Words</small>
+      <h2>Customer Love</h2>
+    </div>
+
+    <div class="review-grid">
+      <article class="review-card">
+        <div class="review-person">
+          <div class="review-avatar">A</div>
+          <div>
+            <div class="review-name">Customer</div>
+            <div class="review-verified">Review placeholder</div>
+          </div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p>“A beautiful piece with such a delicate look.”</p>
+      </article>
+
+      <article class="review-card">
+        <div class="review-person">
+          <div class="review-avatar">S</div>
+          <div>
+            <div class="review-name">Customer</div>
+            <div class="review-verified">Review placeholder</div>
+          </div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p>“Simple, elegant, and lovely for everyday styling.”</p>
+      </article>
+
+      <article class="review-card">
+        <div class="review-person">
+          <div class="review-avatar">M</div>
+          <div>
+            <div class="review-name">Customer</div>
+            <div class="review-verified">Review placeholder</div>
+          </div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p>“The presentation makes it feel extra special.”</p>
+      </article>
+    </div>
+    <div class="review-disclaimer">Sample review layout — replace with genuine customer reviews before publishing.</div>
+  </div>
+</section>
+
+<!-- RELATED PRODUCTS -->
+<section class="related">
+  <div class="section-heading">
+    <small>Explore More</small>
+    <h2>You may also love</h2>
+  </div>
+
+  <div class="related-grid">
+    <article class="related-card">
+      <div class="related-image">
+        <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=650&q=85" alt="Elegant gold necklace">
+      </div>
+      <h3>Golden Grace</h3>
+      <p>Everyday collection</p>
+      <div class="related-price">PKR 3,499</div>
+    </article>
+
+    <article class="related-card">
+      <div class="related-image">
+        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=650&q=85" alt="Minimal necklace">
+      </div>
+      <h3>Serene Pendant</h3>
+      <p>Minimal collection</p>
+      <div class="related-price">PKR 3,999</div>
+    </article>
+
+    <article class="related-card">
+      <div class="related-image">
+        <img src="https://images.unsplash.com/photo-1599459183200-59c7687a0279?auto=format&fit=crop&w=650&q=85" alt="Gold jewelry">
+      </div>
+      <h3>Golden Hour</h3>
+      <p>Signature collection</p>
+      <div class="related-price">PKR 4,799</div>
+    </article>
+  </div>
+</section>
+</main>
+
+<footer class="footer" id="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">MALORA</div>
+      <p>Jewelry for your little moments of magic.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#product">Shop</a>
+      <a href="#story">Our Story</a>
+      <a href="#reviews">Reviews</a>
+      <a href="mailto:hello@malora.com">Contact</a>
+    </div>
+  </div>
+  <div class="copyright">© 2026 Malora Jewelry. All rights reserved.</div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const productImages = [
+  "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=1100&q=90",
+  "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1100&q=90",
+  "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1100&q=90",
+  "https://images.unsplash.com/photo-1599459183200-59c7687a0279?auto=format&fit=crop&w=1100&q=90"
+];
+
+let quantity = 1;
+let cartCount = 0;
+let toastTimer;
+
+function changeImage(button,index){
+  const mainImage = document.getElementById("mainProductImage");
+  mainImage.style.opacity = "0";
+  setTimeout(()=>{
+    mainImage.src = productImages[index];
+    mainImage.style.opacity = "1";
+  },150);
+
+  document.querySelectorAll(".thumbnail").forEach(item=>item.classList.remove("active"));
+  button.classList.add("active");
+}
+
+function changeQuantity(amount){
+  quantity = Math.max(1,Math.min(7,quantity+amount));
+  document.getElementById("quantity").textContent = quantity;
+}
+
+function addToCart(){
+  cartCount += quantity;
+  document.getElementById("cartCount").textContent = cartCount;
+  showToast(quantity + " Celeste necklace" + (quantity>1?"s":"") + " added to your bag.");
+}
+
+function buyNow(){
+  showToast("Connect your checkout or WhatsApp order link to enable purchases.");
+}
+
+function showToast(message){
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>toast.classList.remove("show"),3000);
+}
+
+document.getElementById("menuToggle").addEventListener("click",()=>{
+  document.getElementById("mainNav").classList.toggle("open");
+});
+</script>
+
+</body>
+</html>
+
+
